@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		441C7A9326FA945400EF3256 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441C7A9226FA945400EF3256 /* AppDelegate.swift */; };
 		441C7A9526FA945400EF3256 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441C7A9426FA945400EF3256 /* SceneDelegate.swift */; };
-		441C7A9726FA945400EF3256 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441C7A9626FA945400EF3256 /* ViewController.swift */; };
+		441C7A9726FA945400EF3256 /* DetailMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441C7A9626FA945400EF3256 /* DetailMovieViewController.swift */; };
 		441C7A9A26FA945400EF3256 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441C7A9826FA945400EF3256 /* Main.storyboard */; };
 		441C7A9C26FA945500EF3256 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 441C7A9B26FA945500EF3256 /* Assets.xcassets */; };
 		441C7A9F26FA945500EF3256 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441C7A9D26FA945500EF3256 /* LaunchScreen.storyboard */; };
 		441C7AAA26FA945500EF3256 /* challenge_mobile2youTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441C7AA926FA945500EF3256 /* challenge_mobile2youTests.swift */; };
 		441C7AB526FA945500EF3256 /* challenge_mobile2youUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441C7AB426FA945500EF3256 /* challenge_mobile2youUITests.swift */; };
+		441C7AC826FAA9B200EF3256 /* similarMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441C7AC726FAA9B200EF3256 /* similarMovieCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +39,7 @@
 		441C7A8F26FA945400EF3256 /* challenge-mobile2you.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "challenge-mobile2you.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		441C7A9226FA945400EF3256 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		441C7A9426FA945400EF3256 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		441C7A9626FA945400EF3256 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		441C7A9626FA945400EF3256 /* DetailMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieViewController.swift; sourceTree = "<group>"; };
 		441C7A9926FA945400EF3256 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		441C7A9B26FA945500EF3256 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		441C7A9E26FA945500EF3256 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		441C7AB026FA945500EF3256 /* challenge-mobile2youUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "challenge-mobile2youUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		441C7AB426FA945500EF3256 /* challenge_mobile2youUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challenge_mobile2youUITests.swift; sourceTree = "<group>"; };
 		441C7AB626FA945500EF3256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		441C7AC726FAA9B200EF3256 /* similarMovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = similarMovieCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +101,10 @@
 		441C7A9126FA945400EF3256 /* challenge-mobile2you */ = {
 			isa = PBXGroup;
 			children = (
+				441C7AC326FAA6D800EF3256 /* Presentation */,
 				441C7A9226FA945400EF3256 /* AppDelegate.swift */,
 				441C7A9426FA945400EF3256 /* SceneDelegate.swift */,
-				441C7A9626FA945400EF3256 /* ViewController.swift */,
-				441C7A9826FA945400EF3256 /* Main.storyboard */,
 				441C7A9B26FA945500EF3256 /* Assets.xcassets */,
-				441C7A9D26FA945500EF3256 /* LaunchScreen.storyboard */,
 				441C7AA026FA945500EF3256 /* Info.plist */,
 			);
 			path = "challenge-mobile2you";
@@ -126,6 +126,41 @@
 				441C7AB626FA945500EF3256 /* Info.plist */,
 			);
 			path = "challenge-mobile2youUITests";
+			sourceTree = "<group>";
+		};
+		441C7AC326FAA6D800EF3256 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				441C7AC626FAA75700EF3256 /* Controller */,
+				441C7AC526FAA6F300EF3256 /* Xib */,
+				441C7AC426FAA6E600EF3256 /* Storyboard */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		441C7AC426FAA6E600EF3256 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				441C7A9826FA945400EF3256 /* Main.storyboard */,
+				441C7A9D26FA945500EF3256 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		441C7AC526FAA6F300EF3256 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				441C7AC726FAA9B200EF3256 /* similarMovieCell.xib */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		441C7AC626FAA75700EF3256 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				441C7A9626FA945400EF3256 /* DetailMovieViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +268,7 @@
 			files = (
 				441C7A9F26FA945500EF3256 /* LaunchScreen.storyboard in Resources */,
 				441C7A9C26FA945500EF3256 /* Assets.xcassets in Resources */,
+				441C7AC826FAA9B200EF3256 /* similarMovieCell.xib in Resources */,
 				441C7A9A26FA945400EF3256 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,7 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				441C7A9726FA945400EF3256 /* ViewController.swift in Sources */,
+				441C7A9726FA945400EF3256 /* DetailMovieViewController.swift in Sources */,
 				441C7A9326FA945400EF3256 /* AppDelegate.swift in Sources */,
 				441C7A9526FA945400EF3256 /* SceneDelegate.swift in Sources */,
 			);

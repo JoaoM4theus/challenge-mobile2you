@@ -15,7 +15,8 @@
 		441C7A9F26FA945500EF3256 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441C7A9D26FA945500EF3256 /* LaunchScreen.storyboard */; };
 		441C7AAA26FA945500EF3256 /* challenge_mobile2youTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441C7AA926FA945500EF3256 /* challenge_mobile2youTests.swift */; };
 		441C7AB526FA945500EF3256 /* challenge_mobile2youUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441C7AB426FA945500EF3256 /* challenge_mobile2youUITests.swift */; };
-		441C7AC826FAA9B200EF3256 /* similarMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441C7AC726FAA9B200EF3256 /* similarMovieCell.xib */; };
+		441C7AC826FAA9B200EF3256 /* SimilarMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441C7AC726FAA9B200EF3256 /* SimilarMovieCell.xib */; };
+		44DF82A026FBEE190044595C /* SimilarMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF829F26FBEE190044595C /* SimilarMovieCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +51,8 @@
 		441C7AB026FA945500EF3256 /* challenge-mobile2youUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "challenge-mobile2youUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		441C7AB426FA945500EF3256 /* challenge_mobile2youUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = challenge_mobile2youUITests.swift; sourceTree = "<group>"; };
 		441C7AB626FA945500EF3256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		441C7AC726FAA9B200EF3256 /* similarMovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = similarMovieCell.xib; sourceTree = "<group>"; };
+		441C7AC726FAA9B200EF3256 /* SimilarMovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarMovieCell.xib; sourceTree = "<group>"; };
+		44DF829F26FBEE190044595C /* SimilarMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovieCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +152,8 @@
 		441C7AC526FAA6F300EF3256 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				441C7AC726FAA9B200EF3256 /* similarMovieCell.xib */,
+				441C7AC726FAA9B200EF3256 /* SimilarMovieCell.xib */,
+				44DF829F26FBEE190044595C /* SimilarMovieCell.swift */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -268,7 +271,7 @@
 			files = (
 				441C7A9F26FA945500EF3256 /* LaunchScreen.storyboard in Resources */,
 				441C7A9C26FA945500EF3256 /* Assets.xcassets in Resources */,
-				441C7AC826FAA9B200EF3256 /* similarMovieCell.xib in Resources */,
+				441C7AC826FAA9B200EF3256 /* SimilarMovieCell.xib in Resources */,
 				441C7A9A26FA945400EF3256 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +299,7 @@
 			files = (
 				441C7A9726FA945400EF3256 /* DetailMovieViewController.swift in Sources */,
 				441C7A9326FA945400EF3256 /* AppDelegate.swift in Sources */,
+				44DF82A026FBEE190044595C /* SimilarMovieCell.swift in Sources */,
 				441C7A9526FA945400EF3256 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

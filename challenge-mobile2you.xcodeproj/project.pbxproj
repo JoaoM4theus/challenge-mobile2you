@@ -17,6 +17,7 @@
 		441C7AB526FA945500EF3256 /* challenge_mobile2youUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441C7AB426FA945500EF3256 /* challenge_mobile2youUITests.swift */; };
 		441C7AC826FAA9B200EF3256 /* SimilarMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441C7AC726FAA9B200EF3256 /* SimilarMovieCell.xib */; };
 		44DF82A026FBEE190044595C /* SimilarMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF829F26FBEE190044595C /* SimilarMovieCell.swift */; };
+		44DF82B326FC05ED0044595C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF82B226FC05ED0044595C /* Movie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		441C7AB626FA945500EF3256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		441C7AC726FAA9B200EF3256 /* SimilarMovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarMovieCell.xib; sourceTree = "<group>"; };
 		44DF829F26FBEE190044595C /* SimilarMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovieCell.swift; sourceTree = "<group>"; };
+		44DF82B226FC05ED0044595C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +105,7 @@
 		441C7A9126FA945400EF3256 /* challenge-mobile2you */ = {
 			isa = PBXGroup;
 			children = (
-				44DF82A426FBFED20044595C /* Repository */,
-				44DF82A326FBFECC0044595C /* Models */,
+				44DF82B126FC05E70044595C /* Models */,
 				441C7AC326FAA6D800EF3256 /* Presentation */,
 				441C7A9226FA945400EF3256 /* AppDelegate.swift */,
 				441C7A9426FA945400EF3256 /* SceneDelegate.swift */,
@@ -168,18 +169,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		44DF82A326FBFECC0044595C /* Models */ = {
+		44DF82B126FC05E70044595C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				44DF82B226FC05ED0044595C /* Movie.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		44DF82A426FBFED20044595C /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,6 +312,7 @@
 				441C7A9326FA945400EF3256 /* AppDelegate.swift in Sources */,
 				44DF82A026FBEE190044595C /* SimilarMovieCell.swift in Sources */,
 				441C7A9526FA945400EF3256 /* SceneDelegate.swift in Sources */,
+				44DF82B326FC05ED0044595C /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

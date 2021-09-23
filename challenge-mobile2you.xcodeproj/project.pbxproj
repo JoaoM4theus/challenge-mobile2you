@@ -103,6 +103,8 @@
 		441C7A9126FA945400EF3256 /* challenge-mobile2you */ = {
 			isa = PBXGroup;
 			children = (
+				44DF82A426FBFED20044595C /* Repository */,
+				44DF82A326FBFECC0044595C /* Models */,
 				441C7AC326FAA6D800EF3256 /* Presentation */,
 				441C7A9226FA945400EF3256 /* AppDelegate.swift */,
 				441C7A9426FA945400EF3256 /* SceneDelegate.swift */,
@@ -164,6 +166,20 @@
 				441C7A9626FA945400EF3256 /* DetailMovieViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		44DF82A326FBFECC0044595C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		44DF82A426FBFED20044595C /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

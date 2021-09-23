@@ -20,10 +20,26 @@ class DetailMovieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        movieDetailMovie.delegate = self
         movieDetailMovie.getMovieDetail()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SimilarMovieCell", bundle: nil), forCellReuseIdentifier: "ReuseCell")
+    }
+    
+    func configDetailMovie() {
+        let url = URL(string: MoviesAPIURL.image.rawValue + (self.movieDetailMovie.movie?.poster_path ?? ""))
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: url!)
+            DispatchQueue.main.async {
+                self.imagePoster.image = UIImage(data: data!)
+                self.nameMovieLabel.text = self.movieDetailMovie.movie!.title
+                self.likesMovieLabel.text = "\(self.movieDetailMovie.movie!.vote_count) likes"
+                self.popularityMovieLabel.text = "\(self.movieDetailMovie.movie!.vote_average) popularity"
+            }
+        }
+        
+        
     }
     
     @IBAction func favoriteMovie(_ sender: UIButton) {
@@ -43,5 +59,13 @@ extension DetailMovieViewController: UITableViewDelegate, UITableViewDataSource 
         
         return cell
     }
+    
+}
+
+extension DetailMovieViewController: MovieDetailDelegate {
+    func finishFetchMovieDetail() {
+        configDetailMovie()
+    }
+    
     
 }

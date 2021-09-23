@@ -13,10 +13,16 @@ enum Keys: String {
 
 enum MoviesAPIURL: String {
     case getDetail = "https://api.themoviedb.org/3/movie"
+    case image = "https://image.tmdb.org/t/p/w500"
+}
+
+protocol MovieDetailDelegate: AnyObject {
+    func finishFetchMovieDetail()
 }
 
 class MovieDetailModel {
     var movie: Movie?
+    weak var delegate: MovieDetailDelegate?
     
     func getMovieDetail() {
         let publicKey = Keys.publicKey.rawValue
@@ -31,7 +37,8 @@ class MovieDetailModel {
                 do {
                     let decoder = JSONDecoder()
                     if let response = try? decoder.decode(Movie.self, from: data){
-                        print(response)
+                        self.movie = response
+                        self.delegate?.finishFetchMovieDetail()
                     } else {
                         
                     }

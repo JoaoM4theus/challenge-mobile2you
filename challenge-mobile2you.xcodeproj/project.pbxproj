@@ -55,6 +55,7 @@
 		441C7AC726FAA9B200EF3256 /* SimilarMovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarMovieCell.xib; sourceTree = "<group>"; };
 		44DF829F26FBEE190044595C /* SimilarMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovieCell.swift; sourceTree = "<group>"; };
 		44DF82B226FC05ED0044595C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		44DF82B526FC06430044595C /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +106,7 @@
 		441C7A9126FA945400EF3256 /* challenge-mobile2you */ = {
 			isa = PBXGroup;
 			children = (
+				44DF82B426FC063A0044595C /* Repository */,
 				44DF82B126FC05E70044595C /* Models */,
 				441C7AC326FAA6D800EF3256 /* Presentation */,
 				441C7A9226FA945400EF3256 /* AppDelegate.swift */,
@@ -175,6 +177,14 @@
 				44DF82B226FC05ED0044595C /* Movie.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		44DF82B426FC063A0044595C /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				44DF82B526FC06430044595C /* RequestManager.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

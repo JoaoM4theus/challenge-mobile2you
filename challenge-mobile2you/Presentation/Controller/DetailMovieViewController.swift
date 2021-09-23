@@ -8,15 +8,19 @@
 import UIKit
 
 class DetailMovieViewController: UIViewController {
+    //MARK: - IBOulet
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imagePoster: UIImageView!
     @IBOutlet weak var nameMovieLabel: UILabel!
     @IBOutlet weak var likesMovieLabel: UILabel!
     @IBOutlet weak var popularityMovieLabel: UILabel!
+
     var favorite = false
+    var movieDetailMovie: MovieDetailModel = MovieDetailModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        movieDetailMovie.getMovieDetail()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SimilarMovieCell", bundle: nil), forCellReuseIdentifier: "ReuseCell")

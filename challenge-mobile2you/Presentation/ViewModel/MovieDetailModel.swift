@@ -18,6 +18,8 @@ enum MoviesAPIURL: String {
 
 protocol MovieDetailDelegate: AnyObject {
     func finishFetchMovieDetail()
+    func loading()
+    func finishLoading()
 }
 
 class MovieDetailModel {
@@ -25,6 +27,9 @@ class MovieDetailModel {
     weak var delegate: MovieDetailDelegate?
     
     func getMovieDetail() {
+        DispatchQueue.main.async {
+            self.delegate?.loading()
+        }
         let publicKey = Keys.publicKey.rawValue
         let url = MoviesAPIURL.getDetail.rawValue
         let id = 550 //DEFAULT
@@ -38,7 +43,11 @@ class MovieDetailModel {
                     let decoder = JSONDecoder()
                     if let response = try? decoder.decode(Movie.self, from: data){
                         self.movie = response
+                        DispatchQueue.main.async {
+                            self.delegate?.finishLoading()
+                        }
                         self.delegate?.finishFetchMovieDetail()
+                        
                     } else {
                         
                     }

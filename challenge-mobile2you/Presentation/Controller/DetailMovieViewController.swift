@@ -14,32 +14,28 @@ class DetailMovieViewController: UIViewController {
     @IBOutlet weak var nameMovieLabel: UILabel!
     @IBOutlet weak var likesMovieLabel: UILabel!
     @IBOutlet weak var popularityMovieLabel: UILabel!
-
+    
     var favorite = false
     var movieDetailMovie: MovieDetailModel = MovieDetailModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         movieDetailMovie.delegate = self
-        movieDetailMovie.getMovieDetail()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SimilarMovieCell", bundle: nil), forCellReuseIdentifier: "ReuseCell")
+        movieDetailMovie.getMovieDetail()
+        
     }
     
     func configDetailMovie() {
+        
         let url = URL(string: MoviesAPIURL.image.rawValue + (self.movieDetailMovie.movie?.poster_path ?? ""))
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: url!)
-            DispatchQueue.main.async {
-                self.imagePoster.image = UIImage(data: data!)
-                self.nameMovieLabel.text = self.movieDetailMovie.movie!.title
-                self.likesMovieLabel.text = "\(self.movieDetailMovie.movie!.vote_count) likes"
-                self.popularityMovieLabel.text = "\(self.movieDetailMovie.movie!.vote_average) popularity"
-            }
-        }
-        
-        
+        let data = try? Data(contentsOf: url!)
+        self.imagePoster.image = UIImage(data: data!)
+        self.nameMovieLabel.text = self.movieDetailMovie.movie!.title
+        self.likesMovieLabel.text = "\(self.movieDetailMovie.movie!.vote_count) likes"
+        self.popularityMovieLabel.text = "\(self.movieDetailMovie.movie!.vote_average) popularity"
     }
     
     @IBAction func favoriteMovie(_ sender: UIButton) {
@@ -63,8 +59,18 @@ extension DetailMovieViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension DetailMovieViewController: MovieDetailDelegate {
+    func loading() {
+        self.showActivity()
+    }
+    
+    func finishLoading() {
+        self.hideActivity()
+    }
+    
     func finishFetchMovieDetail() {
-        configDetailMovie()
+        DispatchQueue.main.async {
+            self.configDetailMovie()
+        }
     }
     
     

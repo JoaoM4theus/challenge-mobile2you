@@ -32,7 +32,7 @@ class MovieDetailModel {
         }
         let publicKey = Keys.publicKey.rawValue
         let url = MoviesAPIURL.getDetail.rawValue
-        let id = 550 //DEFAULT
+        let id = 250 //DEFAULT
         
         let requestURL = "\(url)/\(id)?api_key=\(publicKey)"
         

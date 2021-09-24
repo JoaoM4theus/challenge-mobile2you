@@ -70,6 +70,7 @@ extension DetailMovieViewController: MovieDetailDelegate {
     func finishFetchMovieDetail() {
         DispatchQueue.main.async {
             self.configDetailMovie()
+            
         }
     }
     

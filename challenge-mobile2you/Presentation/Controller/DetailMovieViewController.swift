@@ -17,6 +17,7 @@ class DetailMovieViewController: UIViewController {
     
     var favorite = false
     var movieDetailMovie: MovieDetailModel = MovieDetailModel()
+    var movieSimilarMovie: MovieSimilarModel = MovieSimilarModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class DetailMovieViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SimilarMovieCell", bundle: nil), forCellReuseIdentifier: "ReuseCell")
         movieDetailMovie.getMovieDetail()
-        
+        movieSimilarMovie.getMovieSimilar()
     }
     
     func configDetailMovie() {

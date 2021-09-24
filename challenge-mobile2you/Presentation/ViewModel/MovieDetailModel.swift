@@ -12,7 +12,8 @@ enum Keys: String {
 }
 
 enum MoviesAPIURL: String {
-    case getDetail = "https://api.themoviedb.org/3/movie"
+//    case getSimilar = "https://api.themoviedb.org/3/movie"
+    case getMovie = "https://api.themoviedb.org/3/movie"
     case image = "https://image.tmdb.org/t/p/w500"
 }
 
@@ -23,7 +24,7 @@ protocol MovieDetailDelegate: AnyObject {
 }
 
 class MovieDetailModel {
-    var movie: Movie?
+    var movie: MovieDetail?
     weak var delegate: MovieDetailDelegate?
     
     func getMovieDetail() {
@@ -31,7 +32,7 @@ class MovieDetailModel {
             self.delegate?.loading()
         }
         let publicKey = Keys.publicKey.rawValue
-        let url = MoviesAPIURL.getDetail.rawValue
+        let url = MoviesAPIURL.getMovie.rawValue
         let id = 250 //DEFAULT
         
         let requestURL = "\(url)/\(id)?api_key=\(publicKey)"
@@ -41,7 +42,7 @@ class MovieDetailModel {
             if error == nil{
                 do {
                     let decoder = JSONDecoder()
-                    if let response = try? decoder.decode(Movie.self, from: data){
+                    if let response = try? decoder.decode(MovieDetail.self, from: data){
                         self.movie = response
                         DispatchQueue.main.async {
                             self.delegate?.finishLoading()

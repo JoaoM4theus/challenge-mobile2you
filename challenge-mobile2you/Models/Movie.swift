@@ -7,7 +7,18 @@
 
 import Foundation
 
-struct Movie: Codable {
+struct SimilarMovieResponse: Codable {
+    let results: [MovieSimilar]
+}
+
+struct MovieSimilar: Codable {
+    let poster_path: String?
+    let title: String
+    let release_date: String
+    let genre_ids: [Int]
+}
+
+struct MovieDetail: Codable {
     let id: Int
     let imdb_id: String?
     let adult: Bool

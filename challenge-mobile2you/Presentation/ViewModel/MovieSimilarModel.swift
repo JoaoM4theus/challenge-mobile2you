@@ -34,8 +34,7 @@ class MovieSimilarModel {
                 do {
                     let decoder = JSONDecoder()
                     if let response = try? decoder.decode(SimilarMovieResponse.self, from: data){
-//                        self.movieSimilar = response.result
-                        print(response)
+                        self.movieSimilar = response.results
                         DispatchQueue.main.async {
                             self.delegate?.finishLoading()
                         }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4409C8B326FEC8E70052C94A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4409C8B226FEC8E70052C94A /* Enums.swift */; };
 		441C7A9326FA945400EF3256 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441C7A9226FA945400EF3256 /* AppDelegate.swift */; };
 		441C7A9526FA945400EF3256 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441C7A9426FA945400EF3256 /* SceneDelegate.swift */; };
 		441C7A9726FA945400EF3256 /* DetailMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441C7A9626FA945400EF3256 /* DetailMovieViewController.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4409C8B226FEC8E70052C94A /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		441C7A8F26FA945400EF3256 /* challenge-mobile2you.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "challenge-mobile2you.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		441C7A9226FA945400EF3256 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		441C7A9426FA945400EF3256 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				4472D33D26FD504700AC7834 /* Extension.swift */,
+				4409C8B226FEC8E70052C94A /* Enums.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 			files = (
 				441C7A9726FA945400EF3256 /* DetailMovieViewController.swift in Sources */,
 				44DF82BF26FC08C20044595C /* MovieDetailModel.swift in Sources */,
+				4409C8B326FEC8E70052C94A /* Enums.swift in Sources */,
 				441C7A9326FA945400EF3256 /* AppDelegate.swift in Sources */,
 				44DF82A026FBEE190044595C /* SimilarMovieCell.swift in Sources */,
 				44DF82C126FC09940044595C /* RequestManager.swift in Sources */,

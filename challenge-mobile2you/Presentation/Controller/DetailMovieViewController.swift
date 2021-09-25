@@ -16,27 +16,27 @@ class DetailMovieViewController: UIViewController {
     @IBOutlet weak var popularityMovieLabel: UILabel!
     
     var favorite = false
-    var movieDetailMovie: MovieDetailModel = MovieDetailModel()
-    var movieSimilarMovie: MovieSimilarModel = MovieSimilarModel()
+    var movieDetailModel: MovieDetailModel = MovieDetailModel()
+    var movieSimilarModel: MovieSimilarModel = MovieSimilarModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieDetailMovie.delegate = self
+        movieDetailModel.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SimilarMovieCell", bundle: nil), forCellReuseIdentifier: "ReuseCell")
-        movieDetailMovie.getMovieDetail()
-        movieSimilarMovie.getMovieSimilar()
+        movieDetailModel.getMovieDetail()
+        movieSimilarModel.getMovieSimilar()
     }
     
     func configDetailMovie() {
         
-        let url = URL(string: MoviesAPIURL.image.rawValue + (self.movieDetailMovie.movie?.poster_path ?? ""))
+        let url = URL(string: MoviesAPIURL.image.rawValue + (self.movieDetailModel.movie?.poster_path ?? ""))
         let data = try? Data(contentsOf: url!)
         self.imagePoster.image = UIImage(data: data!)
-        self.nameMovieLabel.text = self.movieDetailMovie.movie!.title
-        self.likesMovieLabel.text = "\(self.movieDetailMovie.movie!.vote_count) likes"
-        self.popularityMovieLabel.text = "\(self.movieDetailMovie.movie!.vote_average) popularity"
+        self.nameMovieLabel.text = self.movieDetailModel.movie!.title
+        self.likesMovieLabel.text = "\(self.movieDetailModel.movie!.vote_count) likes"
+        self.popularityMovieLabel.text = "\(self.movieDetailModel.movie!.vote_average) popularity"
     }
     
     @IBAction func favoriteMovie(_ sender: UIButton) {
@@ -48,12 +48,18 @@ class DetailMovieViewController: UIViewController {
 
 extension DetailMovieViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return movieSimilarModel.movieSimilar?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let movieDetail = movieSimilarModel.movieSimilar?[indexPath.row] else { return UITableViewCell() }
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseCell") as! SimilarMovieCell
-        
+        let url = URL(string: MoviesAPIURL.image.rawValue + (movieDetail.poster_path ?? ""))
+        let data = try? Data(contentsOf: url!)
+        cell.imagePoster.image = UIImage(data: data!)
+        cell.nameMovieLabel.text = movieDetail.title
+        cell.dateMovieLabel.text = DateFormatter.
+        cell.genreMovieLabel.text = "\(movieDetail.genre_ids)"
         return cell
     }
     

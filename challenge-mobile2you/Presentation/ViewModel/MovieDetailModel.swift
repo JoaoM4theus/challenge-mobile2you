@@ -7,16 +7,6 @@
 
 import Foundation
 
-enum Keys: String {
-    case publicKey = "eca46b71e0db1ad54a0261f6783df094"
-}
-
-enum MoviesAPIURL: String {
-//    case getSimilar = "https://api.themoviedb.org/3/movie"
-    case getMovie = "https://api.themoviedb.org/3/movie"
-    case image = "https://image.tmdb.org/t/p/w500"
-}
-
 protocol MovieDetailDelegate: AnyObject {
     func finishFetchMovieDetail()
     func loading()

@@ -40,7 +40,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="views " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fo-7B-w7n">
-                                <rect key="frame" x="154.5" y="501.5" width="112.5" height="20.5"/>
+                                <rect key="frame" x="154.5" y="501.5" width="112.5" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BdV-ey-MuC">
-                                <rect key="frame" x="361" y="405" width="33" height="33"/>
+                                <rect key="frame" x="361" y="414" width="33" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="33" id="0fF-eL-pf9"/>
                                     <constraint firstAttribute="height" constant="33" id="m1s-30-l5Z"/>
@@ -65,12 +65,15 @@
                                     <action selector="favoriteMovie:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ONv-d5-4sQ"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VKO-bF-ZFS">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VKO-bF-ZFS">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="387"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="387" id="VNn-ua-GaP"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jVK-ot-eKO">
+                                <rect key="frame" x="-19" y="362" width="453" height="44"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -88,10 +91,14 @@
                             <constraint firstAttribute="bottom" secondItem="IW5-aW-5un" secondAttribute="bottom" id="Z8x-4C-9ud"/>
                             <constraint firstItem="IW5-aW-5un" firstAttribute="top" secondItem="yW4-zd-juk" secondAttribute="bottom" constant="11" id="aRa-Fo-cxY"/>
                             <constraint firstItem="8Fo-7B-w7n" firstAttribute="top" secondItem="d7N-gO-tqm" secondAttribute="bottom" constant="15.5" id="cjA-Rc-Mv3"/>
+                            <constraint firstItem="d7N-gO-tqm" firstAttribute="top" secondItem="jVK-ot-eKO" secondAttribute="bottom" constant="8" id="eb5-sR-hcC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VKO-bF-ZFS" secondAttribute="trailing" id="edM-bn-dT0"/>
                             <constraint firstItem="yW4-zd-juk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="63.25" id="fxd-nA-Kbj"/>
+                            <constraint firstItem="jVK-ot-eKO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="318" id="hSZ-kJ-9Oy"/>
                             <constraint firstItem="yW4-zd-juk" firstAttribute="top" secondItem="d7N-gO-tqm" secondAttribute="bottom" constant="11.5" id="hog-7F-Gwm"/>
-                            <constraint firstItem="BdV-ey-MuC" firstAttribute="top" secondItem="VKO-bF-ZFS" secondAttribute="bottom" constant="18" id="lXt-l3-VpJ"/>
+                            <constraint firstItem="jVK-ot-eKO" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="20" id="iPj-0O-OSf"/>
+                            <constraint firstItem="BdV-ey-MuC" firstAttribute="top" secondItem="VKO-bF-ZFS" secondAttribute="bottom" constant="27" id="lXt-l3-VpJ"/>
+                            <constraint firstItem="jVK-ot-eKO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-19" id="pus-nu-qad"/>
                             <constraint firstItem="1yi-Eu-lbI" firstAttribute="top" secondItem="d7N-gO-tqm" secondAttribute="bottom" constant="15.5" id="qgd-jY-KlX"/>
                             <constraint firstItem="IW5-aW-5un" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tGf-tv-EdN"/>
                             <constraint firstItem="BdV-ey-MuC" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ua6-6c-Yzi"/>
@@ -105,6 +112,7 @@
                         <outlet property="nameMovieLabel" destination="d7N-gO-tqm" id="Wji-14-B4D"/>
                         <outlet property="popularityMovieLabel" destination="8Fo-7B-w7n" id="wUF-Yh-Vsf"/>
                         <outlet property="tableView" destination="IW5-aW-5un" id="ZDd-Xn-0Ni"/>
+                        <outlet property="viewShadow" destination="jVK-ot-eKO" id="0dn-8h-HCY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

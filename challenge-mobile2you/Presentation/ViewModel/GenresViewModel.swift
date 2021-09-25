@@ -31,7 +31,7 @@ class GenresViewModel {
         }
     }
     
-    func getGenreName(id: Int, second: Int) -> String {
+    func getGenreName(id: Int, second: Int = 0) -> String {
         var genreFirstName: String = ""
         var genreSecondName: String = ""
         for genre in genres {

@@ -9,6 +9,7 @@ import UIKit
 
 class DetailMovieViewController: UIViewController {
     //MARK: - IBOulet
+    @IBOutlet weak var viewShadow: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imagePoster: UIImageView!
     @IBOutlet weak var nameMovieLabel: UILabel!
@@ -22,18 +23,27 @@ class DetailMovieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configShadow()
         genreModel.getGenres()
         movieDetailModel.delegate = self
         movieSimilarModel.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SimilarMovieCell", bundle: nil), forCellReuseIdentifier: "ReuseCell")
-        movieDetailModel.getMovieDetail(222)
-        movieSimilarModel.getMovieSimilar(222)
+        movieDetailModel.getMovieDetail(500)
+        movieSimilarModel.getMovieSimilar(500)
+    }
+    
+    func configShadow() {
+        viewShadow.clipsToBounds = false
+        viewShadow.layer.shadowColor = UIColor.black.cgColor
+        viewShadow.layer.shadowOpacity = 0.5
+//        viewShadow.layer.shadowOffset = CGSize.zero
+//        viewShadow.layer.shadowRadius = 10
+        viewShadow.layer.shadowPath = UIBezierPath(roundedRect: viewShadow.bounds, cornerRadius: 10).cgPath
     }
     
     func configDetailMovie() {
-        
         let url = URL(string: MoviesAPIURL.image.rawValue + (self.movieDetailModel.movie?.poster_path ?? ""))
         let data = try? Data(contentsOf: url!)
         self.imagePoster.image = UIImage(data: data!)
@@ -66,7 +76,13 @@ extension DetailMovieViewController: UITableViewDelegate, UITableViewDataSource 
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy"
         cell.dateMovieLabel.text = formatter.string(from: date ?? Date())
-        cell.genreMovieLabel.text = genreModel.getGenreName(id: movieDetail.genre_ids[0], second: movieDetail.genre_ids[1])
+        
+        if movieDetail.genre_ids.count > 1 {
+            cell.genreMovieLabel.text = genreModel.getGenreName(id: movieDetail.genre_ids[0], second: movieDetail.genre_ids[1])
+        } else {
+            cell.genreMovieLabel.text = genreModel.getGenreName(id: movieDetail.genre_ids[0])
+        }
+        
         return cell
     }
     
@@ -98,6 +114,4 @@ extension DetailMovieViewController: MovieSimilarDelegate {
     func finishLoading() {
         hideActivity()
     }
-    
-    
 }

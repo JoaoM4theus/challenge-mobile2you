@@ -5,7 +5,7 @@
 //  Created by Softbuilder Hibrido on 22/09/21.
 //
 
-import Foundation
+import UIKit
 
 protocol MovieDetailDelegate: AnyObject {
     func finishFetchMovieDetail()
@@ -13,6 +13,7 @@ protocol MovieDetailDelegate: AnyObject {
 }
 
 class MovieDetailModel {
+    var favorite = false
     var movie: MovieDetail?
     weak var delegate: MovieDetailDelegate?
     
@@ -37,5 +38,26 @@ class MovieDetailModel {
                 }
             }
         }
+    }
+    
+    func configDetailMovie(imagePoster: UIImageView, nameMovieLabel: UILabel, likesMovieLabel: UILabel, popularityMovieLabel: UILabel, shadow: UIView){
+        guard let movieDetail = movie else { return }
+        let url = URL(string: MoviesAPIURL.image.rawValue + (movieDetail.poster_path ?? ""))
+        let data = try? Data(contentsOf: url!)
+        imagePoster.image = UIImage(data: data!)
+        nameMovieLabel.text = movieDetail.title
+        likesMovieLabel.text = "\(movieDetail.vote_count) likes"
+        popularityMovieLabel.text = "\(movieDetail.vote_average) popularity"
+        
+        shadow.clipsToBounds = false
+        shadow.layer.shadowColor = UIColor.black.cgColor
+        shadow.layer.shadowOpacity = 0.5
+        shadow.layer.shadowPath = UIBezierPath(roundedRect: shadow.bounds, cornerRadius: 10).cgPath
+    }
+    
+    func favoriteButton(sender: UIButton) {
+        let imageString = favorite ? "suit.heart" : "suit.heart.fill"
+        favorite = !favorite
+        sender.setImage(UIImage(systemName: imageString), for: .normal)
     }
 }

@@ -16,15 +16,19 @@ class DetailMovieViewController: UIViewController {
     @IBOutlet weak var likesMovieLabel: UILabel!
     @IBOutlet weak var popularityMovieLabel: UILabel!
     
-    var favorite = false
     var movieDetailModel: MovieDetailModel = MovieDetailModel()
     var movieSimilarModel: MovieSimilarModel = MovieSimilarModel()
-    var genreModel: GenresViewModel = GenresViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configShadow()
-        genreModel.getGenres()
+        getData()
+    }
+    
+    @IBAction func favoriteMovie(_ sender: UIButton) {
+        movieDetailModel.favoriteButton(sender: sender)
+    }
+    
+    func getData() {
         movieDetailModel.delegate = self
         movieSimilarModel.delegate = self
         tableView.delegate = self
@@ -32,30 +36,7 @@ class DetailMovieViewController: UIViewController {
         tableView.register(UINib(nibName: "SimilarMovieCell", bundle: nil), forCellReuseIdentifier: "ReuseCell")
         movieDetailModel.getMovieDetail(500)
         movieSimilarModel.getMovieSimilar(500)
-    }
-    
-    func configShadow() {
-        viewShadow.clipsToBounds = false
-        viewShadow.layer.shadowColor = UIColor.black.cgColor
-        viewShadow.layer.shadowOpacity = 0.5
-//        viewShadow.layer.shadowOffset = CGSize.zero
-//        viewShadow.layer.shadowRadius = 10
-        viewShadow.layer.shadowPath = UIBezierPath(roundedRect: viewShadow.bounds, cornerRadius: 10).cgPath
-    }
-    
-    func configDetailMovie() {
-        let url = URL(string: MoviesAPIURL.image.rawValue + (self.movieDetailModel.movie?.poster_path ?? ""))
-        let data = try? Data(contentsOf: url!)
-        self.imagePoster.image = UIImage(data: data!)
-        self.nameMovieLabel.text = self.movieDetailModel.movie!.title
-        self.likesMovieLabel.text = "\(self.movieDetailModel.movie!.vote_count) likes"
-        self.popularityMovieLabel.text = "\(self.movieDetailModel.movie!.vote_average) popularity"
-    }
-    
-    @IBAction func favoriteMovie(_ sender: UIButton) {
-        let imageString = favorite ? "suit.heart" : "suit.heart.fill"
-        favorite = !favorite
-        sender.setImage(UIImage(systemName: imageString), for: .normal)
+        movieSimilarModel.genres.getGenres()
     }
 }
 
@@ -65,27 +46,8 @@ extension DetailMovieViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let movieDetail = movieSimilarModel.movieSimilar?[indexPath.row] else { return UITableViewCell() }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseCell") as! SimilarMovieCell
-        let url = URL(string: MoviesAPIURL.image.rawValue + (movieDetail.poster_path ?? ""))
-        let data = try? Data(contentsOf: url!)
-        cell.imagePoster.image = UIImage(data: data!)
-        cell.nameMovieLabel.text = movieDetail.title
-        
-        let date = Resources.dateFormatter.date(from: movieDetail.release_date)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy"
-        cell.dateMovieLabel.text = formatter.string(from: date ?? Date())
-        
-        if movieDetail.genre_ids.count > 1 {
-            cell.genreMovieLabel.text = genreModel.getGenreName(id: movieDetail.genre_ids[0], second: movieDetail.genre_ids[1])
-        } else {
-            cell.genreMovieLabel.text = genreModel.getGenreName(id: movieDetail.genre_ids[0])
-        }
-        
-        return cell
+        movieSimilarModel.configCell(tableView: tableView, indexPath: indexPath)
     }
-    
 }
 
 extension DetailMovieViewController: MovieDetailDelegate {
@@ -95,11 +57,10 @@ extension DetailMovieViewController: MovieDetailDelegate {
     
     func finishFetchMovieDetail() {
         DispatchQueue.main.async {
-            self.configDetailMovie()
+            self.movieDetailModel.configDetailMovie(imagePoster: self.imagePoster, nameMovieLabel: self.nameMovieLabel, likesMovieLabel: self.likesMovieLabel, popularityMovieLabel: self.popularityMovieLabel, shadow: self.viewShadow)
         }
     }
 }
-
 extension DetailMovieViewController: MovieSimilarDelegate {
     func finishFetchMovieSimilar() {
         DispatchQueue.main.async {

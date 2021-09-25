@@ -5,7 +5,7 @@
 //  Created by Softbuilder Hibrido on 23/09/21.
 //
 
-import Foundation
+import UIKit
 
 protocol MovieSimilarDelegate: AnyObject {
     func finishFetchMovieSimilar()
@@ -15,6 +15,7 @@ protocol MovieSimilarDelegate: AnyObject {
 
 class MovieSimilarModel {
     var movieSimilar: [MovieSimilar]?
+    var genres: GenresViewModel = GenresViewModel()
     weak var delegate: MovieSimilarDelegate?
     
     func getMovieSimilar(_ id: Int) {
@@ -44,5 +45,27 @@ class MovieSimilarModel {
                 }
             }
         }
+    }
+    
+    func configCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let movieDetail = movieSimilar?[indexPath.row] else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseCell") as! SimilarMovieCell
+        let url = URL(string: MoviesAPIURL.image.rawValue + (movieDetail.poster_path ?? ""))
+        let data = try? Data(contentsOf: url!)
+        cell.imagePoster.image = UIImage(data: data!)
+        cell.nameMovieLabel.text = movieDetail.title
+        
+        let date = Resources.dateFormatter.date(from: movieDetail.release_date)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        cell.dateMovieLabel.text = formatter.string(from: date ?? Date())
+        
+        if movieDetail.genre_ids.count > 1 {
+            cell.genreMovieLabel.text = genres.getGenreName(id: movieDetail.genre_ids[0], second: movieDetail.genre_ids[1])
+        } else {
+            cell.genreMovieLabel.text = genres.getGenreName(id: movieDetail.genre_ids[0])
+        }
+        
+        return cell
     }
 }

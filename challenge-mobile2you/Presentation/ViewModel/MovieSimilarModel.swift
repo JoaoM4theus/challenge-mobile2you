@@ -17,14 +17,13 @@ class MovieSimilarModel {
     var movieSimilar: [MovieSimilar]?
     weak var delegate: MovieSimilarDelegate?
     
-    func getMovieSimilar() {
-
+    func getMovieSimilar(_ id: Int) {
         DispatchQueue.main.async {
             self.delegate?.loading()
         }
         let publicKey = Keys.publicKey.rawValue
         let url = MoviesAPIURL.getMovie.rawValue
-        let id = 250 //DEFAULT
+        let id = id
         
         let requestURL = "\(url)/\(id)/similar?api_key=\(publicKey)"
         

@@ -9,21 +9,17 @@ import Foundation
 
 protocol MovieDetailDelegate: AnyObject {
     func finishFetchMovieDetail()
-    func loading()
-    func finishLoading()
+    func failFetchMovieDetail()
 }
 
 class MovieDetailModel {
     var movie: MovieDetail?
     weak var delegate: MovieDetailDelegate?
     
-    func getMovieDetail() {
-        DispatchQueue.main.async {
-            self.delegate?.loading()
-        }
+    func getMovieDetail(_ id: Int) {
         let publicKey = Keys.publicKey.rawValue
         let url = MoviesAPIURL.getMovie.rawValue
-        let id = 250 //DEFAULT
+        let id = id //DEFAULT
         
         let requestURL = "\(url)/\(id)?api_key=\(publicKey)"
         
@@ -34,11 +30,7 @@ class MovieDetailModel {
                     let decoder = JSONDecoder()
                     if let response = try? decoder.decode(MovieDetail.self, from: data){
                         self.movie = response
-                        DispatchQueue.main.async {
-                            self.delegate?.finishLoading()
-                        }
                         self.delegate?.finishFetchMovieDetail()
-                        
                     } else {
                         
                     }

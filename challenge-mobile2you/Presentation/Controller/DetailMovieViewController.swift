@@ -22,11 +22,12 @@ class DetailMovieViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         movieDetailModel.delegate = self
+        movieSimilarModel.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SimilarMovieCell", bundle: nil), forCellReuseIdentifier: "ReuseCell")
-        movieDetailModel.getMovieDetail()
-        movieSimilarModel.getMovieSimilar()
+        movieDetailModel.getMovieDetail(222)
+        movieSimilarModel.getMovieSimilar(222)
     }
     
     func configDetailMovie() {
@@ -58,7 +59,11 @@ extension DetailMovieViewController: UITableViewDelegate, UITableViewDataSource 
         let data = try? Data(contentsOf: url!)
         cell.imagePoster.image = UIImage(data: data!)
         cell.nameMovieLabel.text = movieDetail.title
-        cell.dateMovieLabel.text = DateFormatter.
+        
+        let date = Resources.dateFormatter.date(from: movieDetail.release_date)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        cell.dateMovieLabel.text = formatter.string(from: date ?? Date())
         cell.genreMovieLabel.text = "\(movieDetail.genre_ids)"
         return cell
     }
@@ -66,19 +71,30 @@ extension DetailMovieViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension DetailMovieViewController: MovieDetailDelegate {
-    func loading() {
-        self.showActivity()
-    }
-    
-    func finishLoading() {
-        self.hideActivity()
+    func failFetchMovieDetail() {
+        print("erro")
     }
     
     func finishFetchMovieDetail() {
         DispatchQueue.main.async {
             self.configDetailMovie()
-            
         }
+    }
+}
+
+extension DetailMovieViewController: MovieSimilarDelegate {
+    func finishFetchMovieSimilar() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func loading() {
+        showActivity()
+    }
+    
+    func finishLoading() {
+        hideActivity()
     }
     
     

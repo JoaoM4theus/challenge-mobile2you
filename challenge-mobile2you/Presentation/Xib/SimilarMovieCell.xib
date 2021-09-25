@@ -15,15 +15,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="434" height="135"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ed Wood" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8DE-xf-FYg">
-                        <rect key="frame" x="139" y="34" width="92" height="28"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ed Wood" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8DE-xf-FYg">
+                        <rect key="frame" x="139" y="0.0" width="275" height="87"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1990" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2q-D4-8sW">
-                        <rect key="frame" x="139" y="70" width="39" height="21"/>
+                        <rect key="frame" x="139" y="95" width="39" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="ghh-Yt-v4u"/>
                             <constraint firstAttribute="width" constant="39" id="zSl-g8-NI8"/>
@@ -40,7 +40,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drama, Fantasy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0b-vu-CWB">
-                        <rect key="frame" x="196" y="70" width="117" height="21"/>
+                        <rect key="frame" x="196" y="95" width="117" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Bek-o5-A7p"/>
                             <constraint firstAttribute="width" constant="117" id="DrB-m4-9MP"/>
@@ -55,9 +55,8 @@
                     <constraint firstItem="s0b-vu-CWB" firstAttribute="leading" secondItem="x2q-D4-8sW" secondAttribute="trailing" constant="18" id="4ct-d1-FbL"/>
                     <constraint firstAttribute="bottom" secondItem="wLt-o8-Q1f" secondAttribute="bottom" constant="10" id="4kt-3Q-hJ6"/>
                     <constraint firstItem="x2q-D4-8sW" firstAttribute="top" secondItem="8DE-xf-FYg" secondAttribute="bottom" constant="8" id="7sD-3u-Qwj"/>
-                    <constraint firstAttribute="bottom" secondItem="s0b-vu-CWB" secondAttribute="bottom" constant="44" id="FV9-65-NF1"/>
-                    <constraint firstAttribute="bottom" secondItem="x2q-D4-8sW" secondAttribute="bottom" constant="44" id="Mfu-dl-oQF"/>
                     <constraint firstItem="x2q-D4-8sW" firstAttribute="leading" secondItem="wLt-o8-Q1f" secondAttribute="trailing" constant="29" id="bHh-oK-scJ"/>
+                    <constraint firstItem="s0b-vu-CWB" firstAttribute="top" secondItem="8DE-xf-FYg" secondAttribute="bottom" constant="8" id="gip-7A-AQW"/>
                     <constraint firstItem="wLt-o8-Q1f" firstAttribute="top" secondItem="msR-6Q-amf" secondAttribute="top" id="iFJ-Dv-f9t"/>
                     <constraint firstItem="8DE-xf-FYg" firstAttribute="leading" secondItem="wLt-o8-Q1f" secondAttribute="trailing" constant="29" id="nuc-z2-aUL"/>
                     <constraint firstItem="s0b-vu-CWB" firstAttribute="leading" secondItem="x2q-D4-8sW" secondAttribute="trailing" constant="18" id="pFR-c6-4k0"/>

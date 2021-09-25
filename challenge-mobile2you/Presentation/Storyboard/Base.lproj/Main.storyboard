@@ -65,7 +65,7 @@
                                     <action selector="favoriteMovie:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ONv-d5-4sQ"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VKO-bF-ZFS">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VKO-bF-ZFS">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="387"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="387" id="VNn-ua-GaP"/>

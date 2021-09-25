@@ -8,6 +8,6 @@
 import Foundation
 
 struct GenresResponse: Codable {
-    let genres: [GenresId]
+    let genres: [Genres]
 }
 

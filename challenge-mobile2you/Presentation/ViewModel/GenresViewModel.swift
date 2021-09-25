@@ -12,7 +12,7 @@ class GenresViewModel {
     
     func getGenres() {
         let publicKey = Keys.publicKey.rawValue
-        let url = MoviesAPIURL.getMovie.rawValue
+        let url = MoviesAPIURL.getGenre.rawValue
         let requestURL = "\(url)/list?api_key=\(publicKey)"
         
         RequestManager.shared.makeRequest(to: requestURL, method: .get) { data, error in
@@ -29,5 +29,21 @@ class GenresViewModel {
                 }
             }
         }
+    }
+    
+    func getGenreName(id: Int, second: Int) -> String {
+        var genreFirstName: String = ""
+        var genreSecondName: String = ""
+        for genre in genres {
+            if genre.id == id {
+                genreFirstName = genre.name
+            }
+            
+            if genre.id == second {
+                genreSecondName = genre.name
+            }
+        }
+        
+        return "\(genreFirstName), \(genreSecondName)"
     }
 }

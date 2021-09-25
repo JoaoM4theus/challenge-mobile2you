@@ -18,9 +18,11 @@ class DetailMovieViewController: UIViewController {
     var favorite = false
     var movieDetailModel: MovieDetailModel = MovieDetailModel()
     var movieSimilarModel: MovieSimilarModel = MovieSimilarModel()
+    var genreModel: GenresViewModel = GenresViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        genreModel.getGenres()
         movieDetailModel.delegate = self
         movieSimilarModel.delegate = self
         tableView.delegate = self
@@ -64,7 +66,7 @@ extension DetailMovieViewController: UITableViewDelegate, UITableViewDataSource 
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy"
         cell.dateMovieLabel.text = formatter.string(from: date ?? Date())
-        cell.genreMovieLabel.text = "\(movieDetail.genre_ids)"
+        cell.genreMovieLabel.text = genreModel.getGenreName(id: movieDetail.genre_ids[0], second: movieDetail.genre_ids[1])
         return cell
     }
     

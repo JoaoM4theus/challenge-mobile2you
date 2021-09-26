@@ -18,6 +18,7 @@ class DetailMovieViewController: UIViewController {
     
     var movieDetailModel: MovieDetailModel = MovieDetailModel()
     var movieSimilarModel: MovieSimilarModel = MovieSimilarModel()
+    var idMovie: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +35,8 @@ class DetailMovieViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SimilarMovieCell", bundle: nil), forCellReuseIdentifier: "ReuseCell")
-        movieDetailModel.getMovieDetail(500)
-        movieSimilarModel.getMovieSimilar(500)
+        movieDetailModel.getMovieDetail(idMovie ?? 550)
+        movieSimilarModel.getMovieSimilar(idMovie ?? 550)
         movieSimilarModel.genres.getGenres()
     }
 }
@@ -73,6 +74,8 @@ extension DetailMovieViewController: MovieSimilarDelegate {
     }
     
     func finishLoading() {
-        hideActivity()
+        DispatchQueue.main.async {
+            self.hideActivity()
+        }
     }
 }

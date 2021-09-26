@@ -43,8 +43,7 @@ class MovieDetailModel {
     func configDetailMovie(imagePoster: UIImageView, nameMovieLabel: UILabel, likesMovieLabel: UILabel, popularityMovieLabel: UILabel, shadow: UIView){
         guard let movieDetail = movie else { return }
         let url = URL(string: MoviesAPIURL.image.rawValue + (movieDetail.poster_path ?? ""))
-        let data = try? Data(contentsOf: url!)
-        imagePoster.image = UIImage(data: data!)
+        imagePoster.downloaded(from: url!)
         nameMovieLabel.text = movieDetail.title
         likesMovieLabel.text = "\(movieDetail.vote_count) likes"
         popularityMovieLabel.text = "\(movieDetail.vote_average) popularity"

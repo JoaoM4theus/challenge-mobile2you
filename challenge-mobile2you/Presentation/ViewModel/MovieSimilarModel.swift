@@ -32,13 +32,14 @@ class MovieSimilarModel {
             guard let data = data else { return }
             if error == nil{
                 do {
+                    
                     let decoder = JSONDecoder()
                     if let response = try? decoder.decode(SimilarMovieResponse.self, from: data){
                         self.movieSimilar = response.results
-                        DispatchQueue.main.async {
-                            self.delegate?.finishLoading()
-                        }
                         self.delegate?.finishFetchMovieSimilar()
+                      
+                            self.delegate?.finishLoading()
+                        
                     } else {
                         
                     }
@@ -51,8 +52,7 @@ class MovieSimilarModel {
         guard let movieDetail = movieSimilar?[indexPath.row] else { return UITableViewCell() }
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseCell") as! SimilarMovieCell
         let url = URL(string: MoviesAPIURL.image.rawValue + (movieDetail.poster_path ?? ""))
-        let data = try? Data(contentsOf: url!)
-        cell.imagePoster.image = UIImage(data: data!)
+        cell.imagePoster.downloaded(from: url!)
         cell.nameMovieLabel.text = movieDetail.title
         
         let date = Resources.dateFormatter.date(from: movieDetail.release_date)

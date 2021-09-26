@@ -5,7 +5,7 @@
 //  Created by Softbuilder Hibrido on 26/09/21.
 //
 
-import Foundation
+import UIKit
 
 class MovieRatedViewModel {
     var movie: [RatedMovie] = []
@@ -29,5 +29,13 @@ class MovieRatedViewModel {
                 }
             }
         }
+    }
+    
+    func configCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        let movieRated = movie[indexPath.row]
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieRatedCollectionViewCell", for: indexPath) as? MovieRatedCollectionViewCell else { return  UICollectionViewCell() }
+
+        cell.imagePoster.downloaded(from: URL(string: MoviesAPIURL.image.rawValue + (movieRated.poster_path ?? ""))!)
+        return cell
     }
 }

@@ -21,8 +21,13 @@ class HomeViewController: UIViewController {
         collectionMoviePopularView.dataSource = self
         collectionMovieRatedView.delegate = self
         collectionMovieRatedView.dataSource = self
-        popularModel.getMoviePopular()
+        
+        getData()
+    }
+    
+    func getData() {
         topRatedModel.getMovieTopRated()
+        popularModel.getMoviePopular()
     }
 }
 
@@ -31,29 +36,28 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == self.collectionMoviePopularView {
             return popularModel.movie.count
         }
-        
         return topRatedModel.movie.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionMoviePopularView {
-            let moviePopular = popularModel.movie[indexPath.row]
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviePopularCollectionViewCell", for: indexPath) as? MoviePopularCollectionViewCell else { return  UICollectionViewCell() }
-            
-            let url = URL(string: MoviesAPIURL.image.rawValue + (moviePopular.poster_path ?? ""))
-            let data = try? Data(contentsOf: url!)
-            cell.imagePoster.image = UIImage(data: data!)
-            print(moviePopular.id)
-            return cell
+            return popularModel.configCell(collectionView: collectionView, indexPath: indexPath)
+        }
+        return topRatedModel.configCell(collectionView: collectionView, indexPath: indexPath)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.collectionMoviePopularView {
+            if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailMovieViewController {
+                vc.idMovie = self.popularModel.movie[indexPath.row].id
+                present(vc, animated: true, completion: nil)
+            }
         } else {
-            let movieRated = topRatedModel.movie[indexPath.row]
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieRatedCollectionViewCell", for: indexPath) as? MovieRatedCollectionViewCell else { return UICollectionViewCell()}
-            
-            let url = URL(string: MoviesAPIURL.image.rawValue + (movieRated.poster_path ?? ""))
-            let data = try? Data(contentsOf: url!)
-            cell.imagePoster.image = UIImage(data: data!)
-            print(movieRated.id)
-            return cell
+            if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailMovieViewController {
+                vc.idMovie = self.topRatedModel.movie[indexPath.row].id
+                present(vc, animated: true, completion: nil)
+            }
         }
     }
 }

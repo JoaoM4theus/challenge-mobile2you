@@ -44,6 +44,6 @@ class GenresViewModel {
             }
         }
         
-        return "\(genreFirstName), \(genreSecondName)"
+        return "\(genreFirstName) \(genreSecondName)"
     }
 }

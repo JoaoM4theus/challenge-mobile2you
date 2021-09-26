@@ -12,15 +12,12 @@ class SearchMovieTableViewController: UITableViewController {
     
     var searchModel: SearchMovieViewModel = SearchMovieViewModel()
     
+    private let validation: ValidationSearch = ValidationSearch()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         searchModel.delegate = self
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -47,9 +44,15 @@ class SearchMovieTableViewController: UITableViewController {
 
 extension SearchMovieTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let searchText = searchBar.text {
+        do {
+            let searchText = try validation.validateSearchText(searchBar.text)
             self.searchModel.getMovieSearch(nameSearch: searchText)
+        } catch {
+            let alert = UIAlertController(title: "Ops!", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
+            
         view.endEditing(true)
     }
     

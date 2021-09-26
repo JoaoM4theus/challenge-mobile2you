@@ -14,7 +14,7 @@ struct ValidationSearch {
 //            print("string contains special characters")
 //        }
         guard let textSearch = textSearch else { throw ValidationError.invalidValue }
-        guard textSearch.rangeOfCharacter(from: characterset.inverted) == nil else { throw ValidationError.textHasSpecialCharacter}
+        guard textSearch.rangeOfCharacter(from: characterset.inverted) == nil else { throw ValidationError.textHasSpecialCharacter }
         return textSearch
     }
 }

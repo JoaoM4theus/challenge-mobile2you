@@ -29,6 +29,7 @@ class HomeViewController: UIViewController {
         topRatedModel.getMovieTopRated()
         popularModel.getMoviePopular()
     }
+    
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {

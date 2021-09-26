@@ -13,8 +13,22 @@ struct ValidationSearch {
 //        if textSearch?.rangeOfCharacter(from: characterset.inverted) != nil {
 //            print("string contains special characters")
 //        }
-        guard let textSearch = textSearch { throw ValidationError.invalidValue }
-        guard textSearch.rangeOfCharacter(from: characterset.inverted) == nil { throw ValidationError.textHasSpecialCharacter}
+        guard let textSearch = textSearch else { throw ValidationError.invalidValue }
+        guard textSearch.rangeOfCharacter(from: characterset.inverted) == nil else { throw ValidationError.textHasSpecialCharacter}
         return textSearch
+    }
+}
+
+enum ValidationError: LocalizedError {
+    case textHasSpecialCharacter
+    case invalidValue
+    
+    var errorDescription: String? {
+        switch self {
+        case .textHasSpecialCharacter:
+            return "You have entered a special character!"
+        case .invalidValue:
+            return "You have entered an invalid value"
+        }
     }
 }

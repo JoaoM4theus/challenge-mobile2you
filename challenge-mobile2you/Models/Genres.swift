@@ -11,3 +11,7 @@ struct GenresResponse: Codable {
     let genres: [Genres]
 }
 
+struct Genres: Codable {
+    let id: Int
+    let name: String
+}

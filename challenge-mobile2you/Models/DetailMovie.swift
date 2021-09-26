@@ -7,17 +7,6 @@
 
 import Foundation
 
-struct SimilarMovieResponse: Codable {
-    let results: [MovieSimilar]
-}
-
-struct MovieSimilar: Codable {
-    let poster_path: String?
-    let title: String
-    let release_date: String
-    let genre_ids: [Int]
-}
-
 struct MovieDetail: Codable {
     let id: Int
     let imdb_id: String?
@@ -43,11 +32,6 @@ struct MovieDetail: Codable {
     let video: Bool
     let vote_average: Double
     let vote_count: Int
-}
-
-struct Genres: Codable {
-    let id: Int
-    let name: String
 }
 
 struct Companies: Codable {

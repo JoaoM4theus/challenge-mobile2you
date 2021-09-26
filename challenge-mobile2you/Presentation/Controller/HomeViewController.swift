@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var collectionMovieRatedView: UICollectionView!
     
     var popularModel: MoviePopularViewModel = MoviePopularViewModel()
+    var topRatedModel: MovieRatedViewModel = MovieRatedViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,8 @@ class HomeViewController: UIViewController {
         collectionMoviePopularView.dataSource = self
         collectionMovieRatedView.delegate = self
         collectionMovieRatedView.dataSource = self
-        popularModel.getMovieDetail()
+        popularModel.getMoviePopular()
+        topRatedModel.getMovieTopRated()
     }
 }
 
@@ -30,23 +32,28 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return popularModel.movie.count
         }
         
-        return 15
+        return topRatedModel.movie.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionMoviePopularView {
-            let movieDetail = popularModel.movie[indexPath.row]
+            let moviePopular = popularModel.movie[indexPath.row]
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviePopularCollectionViewCell", for: indexPath) as? MoviePopularCollectionViewCell else { return  UICollectionViewCell() }
             
-            let url = URL(string: MoviesAPIURL.image.rawValue + (movieDetail.poster_path ?? ""))
+            let url = URL(string: MoviesAPIURL.image.rawValue + (moviePopular.poster_path ?? ""))
             let data = try? Data(contentsOf: url!)
             cell.imagePoster.image = UIImage(data: data!)
-            
+            print(moviePopular.id)
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieRatedCollectionViewCell", for: indexPath) as? MovieRatedCollectionViewCell
-            cell?.imagePoster.image = UIImage(named: "depp")
-            return cell ?? UICollectionViewCell()
+            let movieRated = topRatedModel.movie[indexPath.row]
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieRatedCollectionViewCell", for: indexPath) as? MovieRatedCollectionViewCell else { return UICollectionViewCell()}
+            
+            let url = URL(string: MoviesAPIURL.image.rawValue + (movieRated.poster_path ?? ""))
+            let data = try? Data(contentsOf: url!)
+            cell.imagePoster.image = UIImage(data: data!)
+            print(movieRated.id)
+            return cell
         }
     }
 }

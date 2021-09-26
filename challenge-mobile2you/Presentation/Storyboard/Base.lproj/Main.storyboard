@@ -284,6 +284,9 @@
                             <outlet property="delegate" destination="hiP-3Y-k0N" id="zP2-11-Md1"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="searchBar" destination="iBP-2l-yZi" id="L0j-pj-sHF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tO4-cR-pgQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

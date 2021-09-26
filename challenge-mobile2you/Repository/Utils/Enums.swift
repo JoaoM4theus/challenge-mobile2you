@@ -12,6 +12,7 @@ enum Keys: String {
 }
 
 enum MoviesAPIURL: String {
+    case getSearchMovie = "https://api.themoviedb.org/3/search/movie"
     case getGenre = "https://api.themoviedb.org/3/genre/movie"
     case getMovie = "https://api.themoviedb.org/3/movie"
     case image = "https://image.tmdb.org/t/p/w500"

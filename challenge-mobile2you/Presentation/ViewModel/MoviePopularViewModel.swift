@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol MoviePopularDelegate: AnyObject {
+    func fetchMoviePopular()
+    func failFetchPopular()
+}
 
 class MoviePopularViewModel {
     var movie: [PopularMovie] = []
+    weak var delegate: MoviePopularDelegate?
     
     func getMoviePopular() {
         let publicKey = Keys.publicKey.rawValue
@@ -24,10 +29,13 @@ class MoviePopularViewModel {
                     let decoder = JSONDecoder()
                     if let response = try? decoder.decode(PopularMovieResponse.self, from: data){
                         self.movie = response.results
+                        self.delegate?.fetchMoviePopular()
                     } else {
-                        print("erro")
+                        self.delegate?.failFetchPopular()
                     }
                 }
+            } else {
+                self.delegate?.failFetchPopular()
             }
         }
     }

@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol MovieRatedDelegate: AnyObject {
+    func fetchMovieRated()
+    func failFetchRated()
+}
+
 class MovieRatedViewModel {
     var movie: [RatedMovie] = []
+    weak var delegate: MovieRatedDelegate?
     
     func getMovieTopRated() {
         let publicKey = Keys.publicKey.rawValue
@@ -23,10 +29,13 @@ class MovieRatedViewModel {
                     let decoder = JSONDecoder()
                     if let response = try? decoder.decode(RatedMovieResponse.self, from: data){
                         self.movie = response.results
+                        self.delegate?.fetchMovieRated()
                     } else {
-                        print("erro")
+                        self.delegate?.failFetchRated()
                     }
                 }
+            } else {
+                self.delegate?.failFetchRated()
             }
         }
     }

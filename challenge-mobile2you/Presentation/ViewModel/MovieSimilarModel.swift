@@ -37,7 +37,6 @@ class MovieSimilarModel {
                     if let response = try? decoder.decode(SimilarMovieResponse.self, from: data){
                         self.movieSimilar = response.results
                         self.delegate?.finishFetchMovieSimilar()
-                      
                             self.delegate?.finishLoading()
                         
                     } else {

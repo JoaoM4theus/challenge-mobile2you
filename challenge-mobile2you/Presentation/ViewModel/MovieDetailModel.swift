@@ -33,7 +33,7 @@ class MovieDetailModel {
                         self.movie = response
                         self.delegate?.finishFetchMovieDetail()
                     } else {
-                        
+                        self.delegate?.failFetchMovieDetail()
                     }
                 }
             }
@@ -50,7 +50,7 @@ class MovieDetailModel {
         
         shadow.clipsToBounds = false
         shadow.layer.shadowColor = UIColor.black.cgColor
-        shadow.layer.shadowOpacity = 0.5
+        shadow.layer.shadowOpacity = 0.2
         shadow.layer.shadowPath = UIBezierPath(roundedRect: shadow.bounds, cornerRadius: 10).cgPath
     }
     

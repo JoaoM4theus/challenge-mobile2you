@@ -62,3 +62,38 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
 }
+
+extension HomeViewController: MoviePopularDelegate {
+    func fetchMoviePopular() {
+        DispatchQueue.main.async {
+            self.collectionMoviePopularView.reloadData()
+        }
+    }
+    
+    func failFetchPopular() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Ops!", message: "An unexpected error happened. Movies Popular not found. ", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+}
+
+extension HomeViewController: MovieRatedDelegate {
+    func fetchMovieRated() {
+        DispatchQueue.main.async {
+            self.collectionMovieRatedView.reloadData()
+        }
+    }
+    
+    func failFetchRated() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Ops!", message: "An unexpected error happened. Movies Rated not found.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+
+        }
+    }
+    
+    
+}

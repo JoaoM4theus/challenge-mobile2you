@@ -15,6 +15,7 @@ class SearchMovieTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        searchModel.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -23,26 +24,25 @@ class SearchMovieTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return searchModel.movie.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath)
+        cell.textLabel?.text = searchModel.movie[indexPath.row].original_title
+        cell.textLabel?.textColor = .white
         return cell
     }
-     */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailMovieViewController {
+            vc.idMovie = self.searchModel.movie[indexPath.row].id
+            present(vc, animated: true, completion: nil)
+        }
+    }
+     
 }
 
 extension SearchMovieTableViewController: UISearchBarDelegate {
@@ -53,9 +53,22 @@ extension SearchMovieTableViewController: UISearchBarDelegate {
         view.endEditing(true)
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchText == "" {
-//            self.reloadData()
-//        }
+}
+
+extension SearchMovieTableViewController: SearchMovieDelegate {
+    func finishFetchMovie() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func failFetchMovie(message: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Ops!", message: message, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            self.searchModel.movie.removeAll()
+            self.tableView.reloadData()
+        }
     }
 }

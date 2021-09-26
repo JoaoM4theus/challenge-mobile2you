@@ -7,7 +7,15 @@
 
 import Foundation
 
+protocol SearchMovieDelegate: AnyObject {
+    func finishFetchMovie()
+    func failFetchMovie(message: String)
+}
+
 class SearchMovieViewModel {
+    var movie: [SearchMovie] = []
+    weak var delegate: SearchMovieDelegate?
+    
     func getMovieSearch(nameSearch: String) {
         let publicKey = Keys.publicKey.rawValue
         let url = MoviesAPIURL.getSearchMovie.rawValue
@@ -20,11 +28,19 @@ class SearchMovieViewModel {
                 do {
                     let decoder = JSONDecoder()
                     if let response = try? decoder.decode(SearchMovieResponse.self, from: data){
-                        print(response)
+                        self.movie = response.results
+                        
+                        if !self.movie.isEmpty {
+                            self.delegate?.finishFetchMovie()
+                        } else {
+                            self.delegate?.failFetchMovie(message: "Movie not found")
+                        }
                     } else {
-                        print("erro")
+                        self.delegate?.failFetchMovie(message: "An unexpected error happened")
                     }
                 }
+            } else {
+                self.delegate?.failFetchMovie(message: "An unexpected error happened")
             }
         }
     }

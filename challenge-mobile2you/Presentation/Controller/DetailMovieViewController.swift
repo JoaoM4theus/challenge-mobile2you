@@ -53,7 +53,11 @@ extension DetailMovieViewController: UITableViewDelegate, UITableViewDataSource 
 
 extension DetailMovieViewController: MovieDetailDelegate {
     func failFetchMovieDetail() {
-        print("erro")
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Ops!", message: "An unexpected error happened. Movie Detail not found.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func finishFetchMovieDetail() {
@@ -63,6 +67,14 @@ extension DetailMovieViewController: MovieDetailDelegate {
     }
 }
 extension DetailMovieViewController: MovieSimilarDelegate {
+    func failFetchMovieSimiar() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Ops!", message: "An unexpected error happened. Movies Similar not found.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     func finishFetchMovieSimilar() {
         DispatchQueue.main.async {
             self.tableView.reloadData()

@@ -91,7 +91,6 @@ extension HomeViewController: MovieRatedDelegate {
             let alert = UIAlertController(title: "Ops!", message: "An unexpected error happened. Movies Rated not found.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-
         }
     }
     

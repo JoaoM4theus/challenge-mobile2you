@@ -36,6 +36,8 @@ class MovieDetailModel {
                         self.delegate?.failFetchMovieDetail()
                     }
                 }
+            } else {
+                self.delegate?.failFetchMovieDetail()
             }
         }
     }

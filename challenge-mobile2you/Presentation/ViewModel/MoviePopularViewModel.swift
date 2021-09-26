@@ -40,7 +40,6 @@ class MoviePopularViewModel {
         }
     }
     
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     func configCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         let moviePopular = movie[indexPath.row]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviePopularCollectionViewCell", for: indexPath) as? MoviePopularCollectionViewCell else { return  UICollectionViewCell() }

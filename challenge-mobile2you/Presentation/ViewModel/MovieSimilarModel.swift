@@ -9,6 +9,7 @@ import UIKit
 
 protocol MovieSimilarDelegate: AnyObject {
     func finishFetchMovieSimilar()
+    func failFetchMovieSimiar()
     func loading()
     func finishLoading()
 }
@@ -37,12 +38,15 @@ class MovieSimilarModel {
                     if let response = try? decoder.decode(SimilarMovieResponse.self, from: data){
                         self.movieSimilar = response.results
                         self.delegate?.finishFetchMovieSimilar()
-                            self.delegate?.finishLoading()
-                        
+                        self.delegate?.finishLoading()
                     } else {
-                        
+                        self.delegate?.failFetchMovieSimiar()
+                        self.delegate?.finishLoading()
                     }
                 }
+            } else {
+                self.delegate?.failFetchMovieSimiar()
+                self.delegate?.finishLoading()
             }
         }
     }
